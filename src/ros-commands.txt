@@ -1,5 +1,6 @@
 ros commands
 
+sudo ufw allow 3000
 
 -> 
 roscore
