@@ -29,7 +29,7 @@ class Footer extends Component{
             <Container className="text-center" >
                  <div style={phantom} />
                     <div style={style}>
-                    <p>UOW&copy; 2021</p>
+                    <p>MIT All Rights Reserved&copy; UOW&copy; 2021</p>
                     </div>
                 
             </Container>

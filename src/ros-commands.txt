@@ -1,5 +1,8 @@
 ros commands
 
+rostopic list
+rosrun turtlesim turtle_teleop_key
+
 sudo ufw allow 3000
 HOST=0.0.0.0 npm run start
 
@@ -11,3 +14,8 @@ rosrun turtlesim turtlesim_node
 rosrun turtlesim turtle_teleop_key
 ->
 roslaunch rosbridge_server rosbridge_websocket.launch
+
+->
+roslaunch turtlebot3_gazebo turtlebot3_house.launch
+
+-> roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/jean/maps/lib3_house_map.yaml
