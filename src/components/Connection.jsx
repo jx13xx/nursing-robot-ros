@@ -22,13 +22,22 @@ class Connection extends Component {
      });
 
      this.state.ros.on("close", () =>{
-        console.log("connection established");
+        console.log("connection is closed");
         this.setState({ connect: false});
+
+        // try to reconnect every 3 seconds
+        setTimeout( () =>{
+            try{
+                this.state.ros.connect("ws://192.168.1.120:9090");
+             } catch(error) {
+                 console.log("failed to connect to ros client")
+                }
+        },  3000)
      });
 
-    var ipAddress = "192.168.1.120";
-    console.log("ws://" + ipAddress)
-    // this.state.ros.connect("ws://"+ ipAddress +"9090");
+    // var ipAddress = "192.168.1.120";
+    // console.log("ws://" + ipAddress)
+    // // this.state.ros.connect("ws://"+ ipAddress +"9090");
      try{
         this.state.ros.connect("ws://192.168.1.120:9090");
      } catch(error) {console.log("failed to connect to ros client")}
