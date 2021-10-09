@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { Alert } from 'react-bootstrap';
+import config from "../scripts/config.js"
 
 class Connection extends Component {
  state = {
      connect: false,
      ros: null
+     
  }
 
  constructor(){
@@ -28,18 +30,16 @@ class Connection extends Component {
         // try to reconnect every 3 seconds
         setTimeout( () =>{
             try{
-                this.state.ros.connect("ws://192.168.1.120:9090");
+                this.state.ros.connect("ws://"+config.ROSBRIDGE_SERVER_IP+":"+config.ROSBRIDGE_SERVER_PORT + "");
              } catch(error) {
                  console.log("failed to connect to ros client")
                 }
         },  3000)
      });
 
-    // var ipAddress = "192.168.1.120";
-    // console.log("ws://" + ipAddress)
-    // // this.state.ros.connect("ws://"+ ipAddress +"9090");
      try{
-        this.state.ros.connect("ws://192.168.1.120:9090");
+         console.log("ws://"+config.ROSBRIDGE_SERVER_IP+":"+config.ROSBRIDGE_SERVER_PORT + "");
+        this.state.ros.connect("ws://"+config.ROSBRIDGE_SERVER_IP+":"+config.ROSBRIDGE_SERVER_PORT + "");
      } catch(error) {console.log("failed to connect to ros client")}
  }
 
