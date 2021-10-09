@@ -34,7 +34,7 @@ class Connection extends Component {
              } catch(error) {
                  console.log("failed to connect to ros client")
                 }
-        },  3000)
+        },  config.RECONNECTION_TIMER)
      });
 
      try{

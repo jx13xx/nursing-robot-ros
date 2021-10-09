@@ -1,6 +1,7 @@
 ros commands
 
 sudo ufw allow 3000
+HOST=0.0.0.0 npm run start
 
 -> 
 roscore
