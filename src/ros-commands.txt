@@ -17,6 +17,30 @@ rosrun turtlesim turtle_teleop_key
 roslaunch rosbridge_server rosbridge_websocket.launch
 
 ->
+roslaunch gazebo_ros turlebot3_house.launch
+roslaunch
+
+turtlebot3_navigation.launch
+
+
+->
 roslaunch turtlebot3_gazebo turtlebot3_house.launch
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
 
 -> roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=/home/jean/maps/lib3_house_map.yaml
+
+  make sure you install catkin_ws workspace
+
+
+########### install ros turtlebot3_gazebo
+$ sudo apt update
+$ sudo apt upgrade
+$ wget https://raw.githubusercontent.com/ROBOTIS-GIT/robotis_tools/master/install_ros_noetic.sh
+$ chmod 755 ./install_ros_noetic.sh 
+$ bash ./install_ros_noetic.sh
+
+$ sudo apt install ros-noetic-turtlebot3-msgs
+$ sudo apt install ros-noetic-turtlebot3
+
+$ export TURTLEBOT3_MODEL=burger
+$ roslaunch turtlebot3_gazebo turtlebot3_world.launch
