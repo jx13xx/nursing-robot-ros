@@ -3,6 +3,7 @@ import Connection from "./Connection";
 import config from "../scripts/config.js";
 import { Row, Col, Container, Button } from "react-bootstrap";
 import * as Three from "three";
+import Config from "../scripts/config.js";
 class RobotState extends Component {
   state = {
     ros: null,
@@ -75,7 +76,7 @@ class RobotState extends Component {
     // creating a new pose subscriber
     var pose_subscriber = new window.ROSLIB.Topic({
       ros: this.state.ros,
-      name: "/amcl_pose",
+      name: Config.POSE_TOPIC,
       messageType: "geometry_msgs/PoseWithCovarianceStamped",
     });
 
@@ -87,6 +88,23 @@ class RobotState extends Component {
         orientation: this.getOrientationFromQuaternion(
           message.pose.pose.orientation
         ).toFixed(4),
+      });
+    });
+
+    // create a subscriber for the velocity from odom topic
+    var velocity_subscriber = new window.ROSLIB.Topic({
+      ros: this.state.ros,
+      name: Config.ODOM_TOPIC,
+      messageType: "nav_msgs/Odometry",
+    });
+    // callback function for odom
+
+    velocity_subscriber.subscribe((message) => {
+      this.setState({
+        linear_velocity: message.twist.twist.linear.x.toFixed(2),
+      });
+      this.setState({
+        angular_velocity: message.twist.twist.angular.z.toFixed(2),
       });
     });
   }
@@ -104,6 +122,7 @@ class RobotState extends Component {
 
     return RPY["_z"] * (180 / Math.PI).toFixed(3);
   }
+
   render() {
     return (
       <div>
